@@ -16,7 +16,7 @@ var (
 	adminName     = ""
 )
 
-func Init() {
+func InitVars() {
 	file, _ := os.Open(os.Args[1])
 	bytes, _ := io.ReadAll(file)
 	var json map[string]string

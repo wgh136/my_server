@@ -8,14 +8,15 @@ import (
 )
 
 func main() {
-	internal.Init()
+	internal.InitVars()
 	tg_bot.Init(internal.BotToken, internal.WebbookUrl, internal.SecretToken)
 	tg_bot.SetOnUpdate(internal.OnUpdate)
 	httpex.Get("/", internal.HomeHandler)
-	httpex.Get("/index.css", internal.HomeCSSHandler)
 	httpex.Get("/version", internal.VersionHandler)
 	httpex.Get("/updates", internal.UpdatesHandler)
 	httpex.Forward("/picaapi/", "https://picaapi.picacomic.com")
+	httpex.Get("/download", internal.DownloadPageHtml)
+	httpex.Get("/static/<fileName>", internal.StaticHandler)
 	httpex.Mount("/download", internal.DownloadHandler)
 	httpex.Mount("/storage", internal.StorageHandler)
 	httpex.Mount("/storage/download", internal.StorageHandler)
