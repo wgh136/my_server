@@ -33,7 +33,7 @@ func forward(request *HttpRequest, to string) Response {
 		}
 		to = to[0 : len(to)-1]
 	}
-	logPrinter("Fetch data From: " + to)
+	logPrinter("Fetch Data From: " + to)
 	client := &http.Client{
 		Transport:     nil,
 		CheckRedirect: nil,

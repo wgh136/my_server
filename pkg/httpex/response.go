@@ -7,12 +7,12 @@ import (
 )
 
 type Response struct {
-	statusCode int
-	// Response data, if it is nil, reader will be used
-	data    []byte
-	headers map[string]string
+	StatusCode int
+	// Response Data, if it is nil, Reader will be used
+	Data    []byte
+	Headers map[string]string
 	// Used for large response
-	reader io.Reader
+	Reader io.Reader
 }
 
 func HtmlResponse(html string) Response {
@@ -67,4 +67,10 @@ func ByteResponse(reader io.Reader, contentType string) Response {
 	return Response{200, nil, map[string]string{
 		"Content-Type": contentType,
 	}, reader}
+}
+
+func ByteResponse2(data []byte, contentType string) Response {
+	return Response{200, data, map[string]string{
+		"Content-Type": contentType,
+	}, nil}
 }

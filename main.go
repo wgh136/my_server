@@ -35,5 +35,7 @@ func main() {
 		tg_bot.HandleWebhookData(request.Data())
 		return httpex.TextResponse("ok")
 	})
+	httpex.Get("/blogs", internal.BlogListHandler)
+	httpex.Get("/blogs/<id>", internal.BlogDetailHandler)
 	httpex.ListenAndServer(internal.Port)
 }

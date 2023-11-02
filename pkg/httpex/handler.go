@@ -121,7 +121,7 @@ func handleFunc(w http.ResponseWriter, r *http.Request) {
 			}
 			res := handler.handler(request)
 
-			for key, value := range res.headers {
+			for key, value := range res.Headers {
 				w.Header().Set(key, value)
 			}
 
@@ -129,13 +129,13 @@ func handleFunc(w http.ResponseWriter, r *http.Request) {
 				w.WriteHeader(500)
 				logPrinter(err.Error())
 			} else {
-				w.WriteHeader(res.statusCode)
+				w.WriteHeader(res.StatusCode)
 			}
 
-			if res.data != nil {
-				_, err = w.Write(res.data)
-			} else if res.reader != nil {
-				_, err = io.Copy(w, res.reader)
+			if res.Data != nil {
+				_, err = w.Write(res.Data)
+			} else if res.Reader != nil {
+				_, err = io.Copy(w, res.Reader)
 			}
 
 			return
