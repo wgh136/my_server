@@ -17,7 +17,7 @@ type Response struct {
 
 func HtmlResponse(html string) Response {
 	return Response{200, []byte(html), map[string]string{
-		"Content-Type": "text/html",
+		"Content-Type": "text/html; charset=utf-8",
 	}, nil}
 }
 
