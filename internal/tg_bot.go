@@ -10,6 +10,10 @@ import (
 )
 
 func OnUpdate(update tg_bot.Update) {
+	if update.Message.Chat.Type == "group" || update.Message.Chat.Type == "supergroup" {
+		log(*update.Message.Text, "Group: "+update.Message.From.Username, update.Message.Chat.ID)
+		return
+	}
 	log(*update.Message.Text, update.Message.From.Username, update.Message.Chat.ID)
 	AddData(update.Message.From.Username, update.Message.Chat.ID)
 	if *update.Message.Text == "/start" {
